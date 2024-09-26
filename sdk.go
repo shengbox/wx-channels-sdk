@@ -2,12 +2,17 @@ package channels
 
 import (
 	"errors"
+
 	"github.com/zsmhub/wx-channels-sdk/apis"
 	"github.com/zsmhub/wx-channels-sdk/callbacks"
 )
 
 // 微信视频号 sdk 调用入口
-var Sdk = &sdk{}
+// var Sdk = &sdk{}
+
+func New() *sdk {
+	return &sdk{}
+}
 
 type sdk struct {
 	// 视频号小店
