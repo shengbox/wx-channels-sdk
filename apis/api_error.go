@@ -582,3 +582,9 @@ const ErrCode10025010 ErrCode = 10025010
 
 // 更新冲突，请稍后重试
 const ErrCode10025011 ErrCode = 10025011
+
+// 订单解码数达到当月限制
+const ErrCode10020123 ErrCode = 10020123
+
+// 未完成支付的订单不支持API解码操作
+const ErrCode10020124 ErrCode = 10020124
