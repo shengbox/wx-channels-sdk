@@ -3,10 +3,11 @@ package apis
 import (
 	"context"
 	"errors"
-	"github.com/cenkalti/backoff/v4"
 	"log"
 	"sync"
 	"time"
+
+	"github.com/cenkalti/backoff/v4"
 )
 
 // 分布式access_token：获取和设置access_token的值，自行实现该接口的具体逻辑，比如使用redis方案
@@ -101,6 +102,8 @@ func (t *token) syncToken() error {
 			tokenInfo.Token = get.Token
 			tokenInfo.ExpiresIn = get.ExpiresIn
 			tokenInfo.LastRefresh = now
+		} else {
+			return nil
 		}
 	}
 
