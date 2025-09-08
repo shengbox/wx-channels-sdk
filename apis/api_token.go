@@ -131,7 +131,7 @@ func (c *ApiClient) getAccessToken() (TokenInfo, error) {
 		Appid:     c.AppId,
 		Secret:    c.AppSecret,
 	}
-	get, err := c.ExecGetAccessToken(req)
+	get, err := c.ExecPostAccessToken(req)
 	if err != nil {
 		c.logger.Errorf(c.accessTokenName+": req=%+v, err=%+v\n", req, err)
 		return TokenInfo{}, err

@@ -15,6 +15,16 @@ type ReqGetAccessToken struct {
 	Secret    string `json:"secret"`     // 小店唯一凭证密钥，必填
 }
 
+var _ bodyer = ReqGetAccessToken{}
+
+func (x ReqGetAccessToken) intoBody() ([]byte, error) {
+	result, err := json.Marshal(x)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
 var _ urlValuer = ReqGetAccessToken{}
 
 func (x ReqGetAccessToken) intoURLValues() url.Values {
@@ -48,6 +58,18 @@ func (x RespGetAccessToken) intoBody() ([]byte, error) {
 func (c *ApiClient) ExecGetAccessToken(req ReqGetAccessToken) (RespGetAccessToken, error) {
 	var resp RespGetAccessToken
 	err := c.executeWXApiGet("/cgi-bin/token", req, &resp, false)
+	if err != nil {
+		return RespGetAccessToken{}, err
+	}
+	if bizErr := resp.TryIntoErr(); bizErr != nil {
+		return RespGetAccessToken{}, bizErr
+	}
+	return resp, nil
+}
+
+func (c *ApiClient) ExecPostAccessToken(req ReqGetAccessToken) (RespGetAccessToken, error) {
+	var resp RespGetAccessToken
+	err := c.executeWXApiPost("/cgi-bin/stable_token", req, &resp, false)
 	if err != nil {
 		return RespGetAccessToken{}, err
 	}
