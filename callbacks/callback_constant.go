@@ -114,3 +114,9 @@ const EventTypeChannelsEcUserCouponUse EventType = "channels_ec_user_coupon_use"
 
 // 物流轨迹推送通知
 const EventTypeEwaybillPushPath EventType = "ewaybill_push_path"
+
+// 订单待发货
+const EventTypeChannelsEcOrderWaitShipping EventType = "channels_ec_order_wait_shipping"
+
+// 客服消息事件
+const EventTypeCommkfSendMsgToKf EventType = "commkf_send_msg_to_kf"
